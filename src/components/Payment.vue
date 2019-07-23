@@ -2,16 +2,16 @@
   <div id="payment-container">
     <h1>Payment</h1>
 
-    <Cards />
+    <CheckoutForm />
   </div>
 </template>
 
 <script>
-import Cards from "./Cards";
+import CheckoutForm from "./CheckoutForm";
 
 export default {
   components: {
-    Cards
+    CheckoutForm
   }
 };
 </script>
@@ -21,5 +21,11 @@ h1 {
   color: $container-color-1;
   margin-top: 18px;
   margin-left: 24px;
+}
+#payment-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
