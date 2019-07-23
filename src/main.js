@@ -11,9 +11,13 @@ import "swiper/dist/css/swiper.css";
 
 import "./assets/scss/index.scss";
 
+import Filters from "./filters";
+
 Vue.use(Vuelidate);
 Vue.use(BootstrapVue);
 Vue.use(VueAwesomeSwiper /* { default global options } */);
+
+Filters.init(Vue);
 
 Vue.config.productionTip = false;
 

@@ -14,6 +14,7 @@
         placeholder="Enter the name as shown in the card"
         size="sm"
         :state="!$v.formData.name.$error && null"
+        :disabled="success"
       ></b-form-input>
 
       <b-form-invalid-feedback>
@@ -34,6 +35,7 @@
         placeholder="XXXX XXXX XXXX XXXX"
         size="sm"
         :state="!$v.formData.number.$error && null"
+        :disabled="success"
       ></b-form-input>
 
       <b-form-invalid-feedback v-if="$v.formData.number.required">
@@ -60,6 +62,7 @@
             placeholder="MM"
             size="sm"
             :state="!$v.formData.month.$error && null"
+            :disabled="success"
           ></b-form-select>
           <b-form-select
             id="card-expire-year"
@@ -69,6 +72,7 @@
             placeholder="YY"
             size="sm"
             :state="!$v.formData.year.$error && null"
+            :disabled="success"
           ></b-form-select>
 
           <b-form-invalid-feedback>
@@ -89,6 +93,7 @@
           v-model="formData.cvv"
           size="sm"
           :state="!$v.formData.cvv.$error && null"
+          :disabled="success"
         ></b-form-input>
 
         <b-form-invalid-feedback>
@@ -97,13 +102,7 @@
       </b-form-group>
     </div>
 
-    <b-button
-      :class="['float-right']"
-      pill
-      type="submit"
-      variant="primary"
-      size="sm"
-    >
+    <b-button pill block type="submit" size="md" :disabled="success">
       Submit
     </b-button>
   </b-form>
@@ -179,5 +178,8 @@ export default {
 }
 #card-expire-year {
   margin-left: 2.5px;
+}
+button.btn {
+  background-color: $secondary;
 }
 </style>

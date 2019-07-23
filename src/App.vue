@@ -1,28 +1,28 @@
 <template>
   <div id="app">
-    <Container>
+    <TheContainer>
       <template v-slot:left>
-        <Order />
+        <OrderSection />
       </template>
 
       <template v-slot:right>
-        <Payment />
+        <PaymentSection />
       </template>
-    </Container>
+    </TheContainer>
   </div>
 </template>
 
 <script>
-import Container from "./components/Container";
-import Payment from "./components/Payment";
-import Order from "./components/Order";
+import TheContainer from "./components/TheContainer";
+import PaymentSection from "./components/PaymentSection";
+import OrderSection from "./components/OrderSection";
 
 export default {
   name: "app",
   components: {
-    Container,
-    Payment,
-    Order
+    TheContainer,
+    PaymentSection,
+    OrderSection
   }
 };
 </script>
@@ -43,10 +43,10 @@ export default {
 
   background: linear-gradient(
     to right,
-    $background1 0%,
-    $background1 55%,
-    $background2 55%,
-    $background2 100%
+    $primary 0%,
+    $primary 55%,
+    $secondary 55%,
+    $secondary 100%
   );
 }
 </style>

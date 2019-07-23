@@ -15,7 +15,7 @@ $separation-pos: 58.385%;
 #container {
   display: flex;
   width: 80%;
-  height: 60vh;
+  height: 50vh;
   margin: 0 20%;
   padding: 0;
   background-color: white;
