@@ -1,16 +1,26 @@
 <template>
-  <div id="container"></div>
+  <div id="container">
+    <div class="columns left">
+      <slot name="left"></slot>
+    </div>
+    <div class="columns right">
+      <slot name="right"></slot>
+    </div>
+  </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
+$separation-pos: 58.385%;
+
 #container {
+  display: flex;
   width: 80%;
-  margin: 0 20%;
   height: 60vh;
+  margin: 0 20%;
+  padding: 0;
   background-color: white;
   border-radius: 25px;
 
-  $separation-pos: 58.385%;
   background: linear-gradient(
     to right,
     $container-color-1 0%,
@@ -20,5 +30,21 @@
   );
 
   box-shadow: -15px 15px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.columns {
+  height: 100%;
+}
+
+.left {
+  width: $separation-pos;
+}
+
+.right {
+  width: calc(100% - #{$separation-pos});
+}
+
+h1 {
+  text-transform: uppercase;
 }
 </style>

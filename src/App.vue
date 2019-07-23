@@ -1,16 +1,28 @@
 <template>
   <div id="app">
-    <Container />
+    <Container>
+      <template v-slot:left>
+        <Order />
+      </template>
+
+      <template v-slot:right>
+        <Payment />
+      </template>
+    </Container>
   </div>
 </template>
 
 <script>
 import Container from "./components/Container";
+import Payment from "./components/Payment";
+import Order from "./components/Order";
 
 export default {
   name: "app",
   components: {
-    Container
+    Container,
+    Payment,
+    Order
   }
 };
 </script>
