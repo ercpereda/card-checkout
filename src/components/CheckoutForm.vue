@@ -1,5 +1,6 @@
 <template>
   <b-form id="checkout-form" @submit.prevent="handleSubmit">
+    <b-alert v-if="success" variant="success" show>Payment Procesed!</b-alert>
     <b-form-group
       id="card-name-group"
       label="CARD HOLDER"
@@ -10,10 +11,14 @@
         id="card-name"
         :class="['rounded-pill']"
         v-model="formData.name"
-        required
         placeholder="Enter the name as shown in the card"
         size="sm"
+        :state="!$v.formData.name.$error && null"
       ></b-form-input>
+
+      <b-form-invalid-feedback>
+        Requiered
+      </b-form-invalid-feedback>
     </b-form-group>
 
     <b-form-group
@@ -26,10 +31,17 @@
         id="card-number"
         :class="['rounded-pill']"
         v-model="formData.number"
-        required
         placeholder="XXXX XXXX XXXX XXXX"
         size="sm"
+        :state="!$v.formData.number.$error && null"
       ></b-form-input>
+
+      <b-form-invalid-feedback v-if="$v.formData.number.required">
+        Required
+      </b-form-invalid-feedback>
+      <b-form-invalid-feedback v-else-if="$v.formData.number.numeric">
+        Only numeric values
+      </b-form-invalid-feedback>
     </b-form-group>
 
     <div id="expire-date-cvv-group">
@@ -45,19 +57,23 @@
             :class="['rounded-pill']"
             v-model="formData.month"
             :options="months"
-            required
             placeholder="MM"
             size="sm"
+            :state="!$v.formData.month.$error && null"
           ></b-form-select>
           <b-form-select
             id="card-expiry-year"
             :class="['rounded-pill']"
             v-model="formData.year"
             :options="year"
-            required
             placeholder="YY"
             size="sm"
+            :state="!$v.formData.year.$error && null"
           ></b-form-select>
+
+          <b-form-invalid-feedback>
+            Required
+          </b-form-invalid-feedback>
         </b-input-group>
       </b-form-group>
 
@@ -71,9 +87,13 @@
           id="card-cvv"
           :class="['rounded-pill']"
           v-model="formData.cvv"
-          required
           size="sm"
+          :state="!$v.formData.cvv.$error && null"
         ></b-form-input>
+
+        <b-form-invalid-feedback>
+          Required
+        </b-form-invalid-feedback>
       </b-form-group>
     </div>
 
@@ -90,16 +110,13 @@
 </template>
 
 <script>
-const range = (start, end) =>
-  Array.from(
-    { length: end - start + 1 },
-    (_, i) => `${i + start < 10 ? "0" : ""}${i + start}`
-  );
+import { required, numeric } from "vuelidate/lib/validators";
 
 export default {
   name: "checkout-form",
   data() {
     return {
+      success: false,
       formData: {
         name: "",
         number: "",
@@ -111,16 +128,38 @@ export default {
   },
   computed: {
     months: function() {
-      return range(1, 12);
+      return this.range(1, 12);
     },
     year: function() {
       const year = new Date().getFullYear() - 2000;
       console.log(year);
-      return range(year, 99);
+      return this.range(year, 99);
+    }
+  },
+  validations: {
+    formData: {
+      name: { required },
+      number: { required, numeric },
+      month: { required },
+      year: { required },
+      cvv: { required, numeric }
     }
   },
   methods: {
-    handleSubmit() {}
+    handleSubmit() {
+      this.$v.$touch();
+
+      if (this.$v.formData.$error) return;
+
+      this.success = true;
+      this.$v.reset();
+    },
+    range(start, end) {
+      return Array.from(
+        { length: end - start + 1 },
+        (_, i) => `${i + start < 10 ? "0" : ""}${i + start}`
+      );
+    }
   }
 };
 </script>

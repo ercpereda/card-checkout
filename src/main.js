@@ -1,5 +1,6 @@
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
+import Vuelidate from "vuelidate";
 import VueAwesomeSwiper from "vue-awesome-swiper";
 
 import App from "./App.vue";
@@ -10,6 +11,7 @@ import "swiper/dist/css/swiper.css";
 
 import "./assets/scss/index.scss";
 
+Vue.use(Vuelidate);
 Vue.use(BootstrapVue);
 Vue.use(VueAwesomeSwiper /* { default global options } */);
 
