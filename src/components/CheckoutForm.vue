@@ -53,7 +53,7 @@
       >
         <b-input-group id="card-expire-input-group">
           <b-form-select
-            id="card-expiry-month"
+            id="card-expire-month"
             :class="['rounded-pill']"
             v-model="formData.month"
             :options="months"
@@ -62,7 +62,7 @@
             :state="!$v.formData.month.$error && null"
           ></b-form-select>
           <b-form-select
-            id="card-expiry-year"
+            id="card-expire-year"
             :class="['rounded-pill']"
             v-model="formData.year"
             :options="year"
@@ -132,7 +132,6 @@ export default {
     },
     year: function() {
       const year = new Date().getFullYear() - 2000;
-      console.log(year);
       return this.range(year, 99);
     }
   },
@@ -152,7 +151,7 @@ export default {
       if (this.$v.formData.$error) return;
 
       this.success = true;
-      this.$v.reset();
+      this.$v.$reset();
     },
     range(start, end) {
       return Array.from(
@@ -175,10 +174,10 @@ export default {
 #card-cvv {
   width: 56px;
 }
-#card-expiry-month {
+#card-expire-month {
   margin-right: 2.5px;
 }
-#card-expiry-year {
+#card-expire-year {
   margin-left: 2.5px;
 }
 </style>
