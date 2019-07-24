@@ -56,6 +56,9 @@ export default {
 <style scoped lang="scss">
 #order-list {
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .swiper-container {

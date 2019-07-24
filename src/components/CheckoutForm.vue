@@ -1,94 +1,96 @@
 <template>
   <b-form id="checkout-form" @submit.prevent="handleSubmit">
     <b-alert v-if="success" variant="success" show>Payment Procesed!</b-alert>
-    <b-form-group
-      id="card-name-group"
-      :invalid-feedback="requiredInvalidFeedback"
-      :state="!$v.formData.name.$error && null"
-      label="CARD HOLDER"
-      label-for="card-name"
-      label-size="sm"
-    >
-      <b-form-input
-        id="card-name"
-        :class="['rounded-pill']"
-        :disabled="success"
+    <div class="form-container">
+      <b-form-group
+        id="card-name-group"
+        :invalid-feedback="requiredInvalidFeedback"
         :state="!$v.formData.name.$error && null"
-        v-model="formData.name"
-        placeholder="Enter the name as shown in the card"
-        size="sm"
-      ></b-form-input>
-    </b-form-group>
-
-    <b-form-group
-      id="card-number-group"
-      :invalid-feedback="cardNumberInvalidFeeddback"
-      :state="!$v.formData.number.$error && null"
-      label="CARD NUMBER"
-      label-for="card-number"
-      label-size="sm"
-    >
-      <b-form-input
-        id="card-number"
-        :class="['rounded-pill']"
-        :state="!$v.formData.number.$error && null"
-        :disabled="success"
-        v-model="formData.number"
-        placeholder="XXXX XXXX XXXX XXXX"
-        size="sm"
-      ></b-form-input>
-    </b-form-group>
-
-    <div id="expire-date-cvv-group">
-      <b-form-group
-        id="card-expire-group"
-        label="EXPIRE DATE"
-        :invalid-feedback="expireDateInvalidFeedback"
-        :state="!$v.formData.expireDate.$error && null"
-        label-for="card-expire-input-group"
-        label-size="sm"
-      >
-        <b-input-group id="card-expire-input-group">
-          <b-form-select
-            id="card-expire-month"
-            :class="['rounded-pill']"
-            :options="months"
-            :state="!$v.formData.expireDate.month.$error && null"
-            :disabled="success"
-            v-model="formData.expireDate.month"
-            placeholder="MM"
-            size="sm"
-          ></b-form-select>
-          <b-form-select
-            id="card-expire-year"
-            :class="['rounded-pill']"
-            :options="years"
-            :state="!$v.formData.expireDate.year.$error && null"
-            :disabled="success"
-            v-model="formData.expireDate.year"
-            placeholder="YY"
-            size="sm"
-          ></b-form-select>
-        </b-input-group>
-      </b-form-group>
-
-      <b-form-group
-        id="card-cvv-group"
-        :invalid-feedback="cvvInvalidFeedback"
-        :state="!$v.formData.cvv.$error && null"
-        label="CVV"
-        label-for="card-cvv"
+        label="CARD HOLDER"
+        label-for="card-name"
         label-size="sm"
       >
         <b-form-input
-          id="card-cvv"
+          id="card-name"
           :class="['rounded-pill']"
-          :state="!$v.formData.cvv.$error && null"
           :disabled="success"
-          v-model="formData.cvv"
+          :state="!$v.formData.name.$error && null"
+          v-model="formData.name"
+          placeholder="Enter the name as shown in the card"
           size="sm"
         ></b-form-input>
       </b-form-group>
+
+      <b-form-group
+        id="card-number-group"
+        :invalid-feedback="cardNumberInvalidFeeddback"
+        :state="!$v.formData.number.$error && null"
+        label="CARD NUMBER"
+        label-for="card-number"
+        label-size="sm"
+      >
+        <b-form-input
+          id="card-number"
+          :class="['rounded-pill']"
+          :state="!$v.formData.number.$error && null"
+          :disabled="success"
+          v-model="formData.number"
+          placeholder="XXXX XXXX XXXX XXXX"
+          size="sm"
+        ></b-form-input>
+      </b-form-group>
+
+      <div id="expire-date-cvv-group">
+        <b-form-group
+          id="card-expire-group"
+          label="EXPIRE DATE"
+          :invalid-feedback="expireDateInvalidFeedback"
+          :state="!$v.formData.expireDate.$error && null"
+          label-for="card-expire-input-group"
+          label-size="sm"
+        >
+          <b-input-group id="card-expire-input-group">
+            <b-form-select
+              id="card-expire-month"
+              :class="['rounded-pill']"
+              :options="months"
+              :state="!$v.formData.expireDate.month.$error && null"
+              :disabled="success"
+              v-model="formData.expireDate.month"
+              placeholder="MM"
+              size="sm"
+            ></b-form-select>
+            <b-form-select
+              id="card-expire-year"
+              :class="['rounded-pill']"
+              :options="years"
+              :state="!$v.formData.expireDate.year.$error && null"
+              :disabled="success"
+              v-model="formData.expireDate.year"
+              placeholder="YY"
+              size="sm"
+            ></b-form-select>
+          </b-input-group>
+        </b-form-group>
+
+        <b-form-group
+          id="card-cvv-group"
+          :invalid-feedback="cvvInvalidFeedback"
+          :state="!$v.formData.cvv.$error && null"
+          label="CVV"
+          label-for="card-cvv"
+          label-size="sm"
+        >
+          <b-form-input
+            id="card-cvv"
+            :class="['rounded-pill']"
+            :state="!$v.formData.cvv.$error && null"
+            :disabled="success"
+            v-model="formData.cvv"
+            size="sm"
+          ></b-form-input>
+        </b-form-group>
+      </div>
     </div>
 
     <b-button pill block type="submit" size="md">
@@ -194,8 +196,18 @@ export default {
 
 <style scoped lang="scss">
 #checkout-form {
-  margin: 0 24px 24px 24px;
+  margin: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+.form-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+};
 #expire-date-cvv-group {
   display: flex;
   justify-content: space-between;
