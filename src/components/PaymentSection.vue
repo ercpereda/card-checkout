@@ -1,6 +1,6 @@
 <template>
   <div id="payment-container">
-    <h1>Payment</h1>
+    <h1 class="title">Payment</h1>
 
     <CheckoutForm />
   </div>
@@ -17,15 +17,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-h1 {
-  color: $container-color-1;
-  margin-top: 18px;
-  margin-left: 24px;
-}
 #payment-container {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: auto;
+}
+.title {
+  color: $secondary;
+  margin-top: 18px;
+  margin-left: 24px;
 }
 </style>

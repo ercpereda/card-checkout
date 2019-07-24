@@ -18,7 +18,6 @@ $separation-pos: 58.385%;
   height: 50vh;
   margin: 0 20%;
   padding: 0;
-  background-color: white;
   border-radius: 25px;
 
   background: linear-gradient(
@@ -42,9 +41,5 @@ $separation-pos: 58.385%;
 
 .right {
   width: calc(100% - #{$separation-pos});
-}
-
-h1 {
-  text-transform: uppercase;
 }
 </style>

@@ -1,16 +1,12 @@
 <template>
   <div id="order-container">
-    <h1>Order</h1>
+    <h1 class="title">Order</h1>
 
-    <div id="content">
-      <div class="list-container">
-        <OrderList :order="order" />
-      </div>
+    <OrderList :order="order" />
 
-      <div id="order-total">
-        <p class="label">ORDER TOTAL</p>
-        <p class="total">{{ total | money }}</p>
-      </div>
+    <div class="order-total">
+      <p class="label">ORDER TOTAL</p>
+      <p class="label total">{{ total | money }}</p>
     </div>
   </div>
 </template>
@@ -39,39 +35,38 @@ export default {
 </script>
 
 <style scoped lang="scss">
-h1 {
-  color: $container-color-2;
+.title {
+  color: $white;
   margin-top: 18px;
   margin-left: 24px;
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
 #order-container {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: strech;
+  justify-content: space-between;
+  overflow: auto;
 }
-#order-total {
+
+.order-total {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  border-top: 1px solid #f3647b;
-  padding: 8px;
+  border-top: 1px solid $primary;
+  padding: 8px 8px 0 8px;
   width: 75%;
-  height: 30px;
 }
-#content {
-  display: flex;
-  flex-direction: column;
-}
-.list-container {
-  flex-grow: 10;
-}
-p.label {
+.label {
   color: $white;
   margin-bottom: 0;
 }
-p.total {
-  color: $white;
+.total {
   font-size: 28px;
   font-weight: bold;
 }

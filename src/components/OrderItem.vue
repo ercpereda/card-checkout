@@ -5,11 +5,11 @@
     </div>
 
     <div class="text-container">
-      <p class="title">{{ name }}</p>
-      <p class="sub-title">
+      <p class="text title">{{ name }}</p>
+      <p class="text sub-title">
         {{ description }} / {{ color }} / Size: {{ size }}
       </p>
-      <p class="price">{{ price | money }}</p>
+      <p class="text price">{{ price | money }}</p>
     </div>
   </div>
 </template>
@@ -17,12 +17,30 @@
 <script>
 export default {
   props: {
-    name: String,
-    description: String,
-    size: Number,
-    color: String,
-    price: Number,
-    image: String
+    name: {
+      type: String,
+      default: "--"
+    },
+    description: {
+      type: String,
+      default: "--"
+    },
+    size: {
+      type: String,
+      default: "--"
+    },
+    color: {
+      type: String,
+      default: "--"
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    image: {
+      type: String,
+      required: true
+    }
   }
 };
 </script>
@@ -52,7 +70,7 @@ $size: 60px;
     rgba(45, 47, 90, 0.96) 96%
   );
 }
-p {
+.text {
   margin: 0;
   margin-left: 20px;
   color: $white;

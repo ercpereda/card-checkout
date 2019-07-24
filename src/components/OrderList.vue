@@ -1,7 +1,7 @@
 <template>
   <div id="order-list">
     <swiper :options="swiperOption">
-      <swiper-slide v-for="item in order" v-bind:key="item.id">
+      <swiper-slide v-for="item in order" :key="item.id">
         <OrderItem
           :name="item.name"
           :description="item.description"
@@ -35,7 +35,6 @@ export default {
         centeredSlides: true,
         effect: "coverflow",
         coverflowEffect: {
-          rotate: 50,
           stretch: 0,
           depth: 100,
           modifier: 1,
@@ -43,11 +42,9 @@ export default {
         },
         pagination: {
           el: ".swiper-pagination",
-          // bulletClass: ".swiper-pag-bullet",
-          // bulletActiveClass: ".swiper-pag-bullet-active",
           clickable: true,
           renderBullet(index, className) {
-            return `<span class="${className} swiper-pagination-bullet-custom"></span>`;
+            return `<span class="${className}" style="background: #f3647b;"></span>`;
           }
         }
       }
@@ -59,10 +56,6 @@ export default {
 <style scoped lang="scss">
 #order-list {
   height: 100%;
-}
-
-.swiper-pagination-bullet-custom {
-  background: red;
 }
 
 .swiper-container {

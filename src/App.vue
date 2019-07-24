@@ -1,26 +1,26 @@
 <template>
   <div id="app">
-    <TheContainer>
-      <template v-slot:left>
+    <BaseContainer>
+      <template #left>
         <OrderSection />
       </template>
 
-      <template v-slot:right>
+      <template #right>
         <PaymentSection />
       </template>
-    </TheContainer>
+    </BaseContainer>
   </div>
 </template>
 
 <script>
-import TheContainer from "./components/TheContainer";
+import BaseContainer from "./components/BaseContainer";
 import PaymentSection from "./components/PaymentSection";
 import OrderSection from "./components/OrderSection";
 
 export default {
   name: "app",
   components: {
-    TheContainer,
+    BaseContainer,
     PaymentSection,
     OrderSection
   }
