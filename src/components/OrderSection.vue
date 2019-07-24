@@ -59,7 +59,7 @@ export default {
   flex-direction: column;
   align-items: flex-end;
   border-top: 1px solid $primary;
-  padding: 8px 8px 0 8px;
+  padding: 8px;
   width: 75%;
 }
 .label {

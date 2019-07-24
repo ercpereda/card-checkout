@@ -207,7 +207,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-};
+}
 #expire-date-cvv-group {
   display: flex;
   justify-content: space-between;
