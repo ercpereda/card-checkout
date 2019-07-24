@@ -1,14 +1,12 @@
 export default {
   filters: {
     money: function(value) {
-      if (!value) return "$ --,--";
+      if (!value) return "$ --.--";
 
       try {
-        return `$ ${parseFloat(value)
-          .toFixed(2)
-          .replace(".", ",")}`;
+        return `$ ${parseFloat(value).toFixed(2)}`;
       } catch (e) {
-        return "$ --,--";
+        return "$ --.--";
       }
     }
   },
